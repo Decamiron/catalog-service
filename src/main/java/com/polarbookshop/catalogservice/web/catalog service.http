@@ -1,0 +1,18 @@
+GET http://localhost:8080/books
+
+###
+GET http://localhost:8080/books/g
+
+###
+POST http://localhost:8080/books
+Content-Type: application/json
+
+{
+  "author": "Vlad Rykov",
+  "title": "content",
+  "isbn": "1234567891",
+  "price": "11"
+}
+
+###
+DELETE http://localhost:8080/books/e123
