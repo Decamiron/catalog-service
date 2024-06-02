@@ -8,3 +8,8 @@ server:
       min-spare: 5
 
 
+
+polar:
+  greeting: "Welcome to the catalog!"
+  testdata:
+    enabled: false
