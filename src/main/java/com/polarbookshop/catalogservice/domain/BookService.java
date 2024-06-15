@@ -2,14 +2,12 @@ package com.polarbookshop.catalogservice.domain;
 
 import org.springframework.stereotype.Service;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class BookService {
-
   private final BookRepository bookRepository;
-
-  public BookService(BookRepository bookRepository) {
-    this.bookRepository = bookRepository;
-  }
 
   public Iterable<Book> viewBookList() {
     return bookRepository.findAll();
@@ -31,14 +29,9 @@ public class BookService {
   }
 
   public Book editBookDetails(String isbn, Book book) {
-    return bookRepository
-        .findByIsbn(isbn)
-        .map(
-            existingBook -> {
-              var bookToUpdate =
-                  new Book(existingBook.isbn(), book.title(), book.author(), book.price());
-              return bookRepository.save(bookToUpdate);
-            })
-        .orElseGet(() -> addBookToCatalog(book));
+    return bookRepository.findByIsbn(isbn).map(existingBook -> {
+      var bookToUpdate = new Book(existingBook.isbn(), book.title(), book.author(), book.price());
+      return bookRepository.save(bookToUpdate);
+    }).orElseGet(() -> addBookToCatalog(book));
   }
 }
