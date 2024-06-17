@@ -4,15 +4,34 @@ GET http://localhost:8080/books
 GET http://localhost:8080/books/g
 
 ###
+< {%
+    const isbn = $random.integer(1000000000, 9000000000)
+    request.variables.set("isbn", isbn)
+%}
 POST http://localhost:8080/books
 Content-Type: application/json
 
 {
   "author": "Vlad Rykov",
   "title": "content",
-  "isbn": "1234567891",
-  "price": "11"
+  "isbn": "{{isbn}}",
+  "price": 9.99
 }
 
-###
+### Update
+PUT http://localhost:8080/books/1850392364
+Content-Type: application/json
+
+{
+  "author": "Vlad Rykov5",
+  "title": "content",
+  "isbn": "1850392364",
+  "price": 9.991
+}
+
+### Delete book
 DELETE http://localhost:8080/books/e123
+
+### Refresh bean properties
+POST http://localhost:8080/actuator/refresh
+

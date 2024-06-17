@@ -11,13 +11,23 @@ server:
 polar:
   greeting: "Welcome to the catalog!"
   testdata:
-    enabled: false
+    enabled: true
 
 spring:
   application:
     name: catalog-service
   config:
     import: "optional:configserver:"
+  sql:
+    init:
+      mode: always # At startup, Spring Data will read the file and execute the SQL
+  datasource:
+    username: user
+    password: password
+    url: jdbc:postgresql://localhost:5432/polardb_catalog
+    hikari:
+      connection-timeout: 2000 # 2s
+      maximum-pool-size: 5
   cloud:
     config:
       uri: http://localhost:8888
@@ -29,3 +39,9 @@ spring:
         multiplier: 1.1
         initial-interval: 1000 # 1s
         max-interval: 2000 # 2s
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health # endpoints to include
