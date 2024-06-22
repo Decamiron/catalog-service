@@ -67,4 +67,8 @@ bootRun {
 
 tasks.named('test') {
     useJUnitPlatform()
+    reports {
+        html.required.set(true)
+        junitXml.required.set(true)
+    }
 }
