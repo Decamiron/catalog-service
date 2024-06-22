@@ -32,10 +32,12 @@ jobs:
         uses: github/codeql-action/upload-sarif@v2
         if: success() || failure()
         with:
-          sarif_file: ${{ steps.scan.outputs.sarif }}
+            sarif_file: ${{ steps.scan.outputs.sarif }}
       - name: Upload test report
         uses: actions/upload-artifact@v2
         if: always()
         with:
           name: test-reports
-          path: catalog-service/build/reports/tests/test/
+          path: |
+            **/build/reports/
+            **/build/test-results/
