@@ -11,7 +11,7 @@ server:
 polar:
   greeting: "Welcome to the catalog!"
   testdata:
-    enabled: true
+    enabled: false
 
 spring:
   application:
