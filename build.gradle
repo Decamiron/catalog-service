@@ -6,12 +6,12 @@ plugins {
 
 ext {
     set('springCloudVersion', "2023.0.2")
+    set('testcontainersVersion', "1.17.3")
 }
 
 group = 'com.polarbookshop'
 version = '0.0.1-SNAPSHOT'
 description = 'Provides functionality for managing the books in the catalog.'
-sourceCompatibility = '17'
 
 java {
     toolchain {
@@ -42,12 +42,18 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
 
     annotationProcessor 'org.projectlombok:lombok', 'org.springframework.boot:spring-boot-configuration-processor'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-webflux'
+    testImplementation 'org.testcontainers:postgresql'
+
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
 dependencyManagement {
     imports {
         mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+        mavenBom "org.testcontainers:testcontainers-bom:${testcontainersVersion}"
     }
 }
 

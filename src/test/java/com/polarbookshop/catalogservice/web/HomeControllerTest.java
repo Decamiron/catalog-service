@@ -1,4 +1,4 @@
-package com.polarbookshop.catalogservice;
+package com.polarbookshop.catalogservice.web;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

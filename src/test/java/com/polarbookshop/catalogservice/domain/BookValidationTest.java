@@ -1,8 +1,7 @@
-package com.polarbookshop.catalogservice;
+package com.polarbookshop.catalogservice.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.polarbookshop.catalogservice.domain.Book;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
