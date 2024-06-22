@@ -11,16 +11,16 @@ server:
 polar:
   greeting: "Welcome to the catalog!"
   testdata:
-    enabled: false
+    enabled: true
 
 spring:
   application:
     name: catalog-service
   config:
     import: "optional:configserver:"
-  sql:
-    init:
-      mode: always # At startup, Spring Data will read the file and execute the SQL
+#  sql:
+#    init:
+#      mode: always # At startup, Spring Data will read the file and execute the SQL
   datasource:
     username: user
     password: password
