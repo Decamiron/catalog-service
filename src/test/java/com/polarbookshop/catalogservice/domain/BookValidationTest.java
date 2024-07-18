@@ -1,8 +1,7 @@
-package com.polarbookshop.catalogservice;
+package com.polarbookshop.catalogservice.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.polarbookshop.catalogservice.domain.Book;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
@@ -20,14 +19,14 @@ public class BookValidationTest {
 
   @Test
   public void testAllFieldsAreValid() {
-    var book = new Book("1234567890", "Book 1", "Author 1", 9.90);
+    var book = Book.of("1234567890", "Book 1", "Author 1", 9.90, "Publisher");
     var result = validator.validate(book);
     assertThat(result).isEmpty();
   }
 
   @Test
   public void testNotAllFieldsAreValid() {
-    var book = new Book("12345678q90", "Book 1", "Author 1", 9.90);
+    var book = Book.of("12345678q90", "Book 1", "Author 1", 9.90, "Publisher");
     var result = validator.validate(book);
     assertThat(result).hasSize(1);
     assertThat(result.iterator().next().getMessage()).isEqualTo("The ISBN format must be valid.");
