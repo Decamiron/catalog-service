@@ -63,6 +63,20 @@ dependencyManagement {
 
 bootRun {
     systemProperty "spring.profiles.active", "testdata"
+
+    // Publish to registry
+//    docker {
+//        publishRegistry {
+//            username = project.findProject("registryUsername")
+//            password = project.findProject("registryPassword")
+//            urn = project.findProject("registryUrl")
+//        }
+//    }
+}
+
+bootBuildImage {
+    imageName = "${project.name}"
+    environment = ["BP_JVM_VERSION": "17.*"]
 }
 
 tasks.named('test') {

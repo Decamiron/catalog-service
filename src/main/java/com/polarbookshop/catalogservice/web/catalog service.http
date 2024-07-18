@@ -14,6 +14,7 @@ Content-Type: application/json
 {
   "author": "Vlad Rykov",
   "title": "content",
+  "publisher": "Publisher",
   "isbn": "{{isbn}}",
   "price": 9.99
 }
